@@ -1,3 +1,4 @@
+import TodoItem from './TodoItem';
 import React, { useState } from 'react';
 
 const App = () => {
@@ -23,30 +24,31 @@ const App = () => {
         setTodos(updatedTodos);
     };
 
-    return (
-        <div className="container">
-            <h1>Att-göra-lista</h1>
-            <form onSubmit={handleAddTodo}>
-                <input 
-                    type="text" 
-                    value={newTodo} 
-                    onChange={(e) => setNewTodo(e.target.value)} 
-                    placeholder="Lägg till en uppgift" 
+return (
+    <div className="container">
+        <h1>Att-göra-lista</h1>
+        <form onSubmit={handleAddTodo}>
+            <input 
+                type="text" 
+                value={newTodo} 
+                onChange={(e) => setNewTodo(e.target.value)} 
+                placeholder="Lägg till en uppgift" 
+            />
+            <button type="submit">Lägg till</button>
+        </form>
+        <ul>
+            {todos.map((todo, index) => (
+                <TodoItem 
+                    key={index} 
+                    todo={todo} 
+                    index={index} 
+                    toggleComplete={handleToggleComplete} 
+                    deleteTodo={handleDeleteTodo} 
                 />
-                <button type="submit">Lägg till</button>
-            </form>
-            <ul>
-                {todos.map((todo, index) => (
-                    <li key={index} className={todo.completed ? 'completed' : ''}>
-                        <span onClick={() => handleToggleComplete(index)}>
-                            {todo.text}
-                        </span>
-                        <button onClick={() => handleDeleteTodo(index)}>Ta bort</button>
-                    </li>
-                ))}
-            </ul>
-        </div>
-    );
+            ))}
+        </ul>
+    </div>
+);
 };
 
 export default App;
