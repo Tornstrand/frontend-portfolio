@@ -1,20 +1,18 @@
-// App.js
-import React, { useState } from 'react';
-import TodoList from './TodoList';
+import React from 'react';
+import TodoItem from './TodoItem';
 
-const App = () => {
-  const [todos, setTodos] = useState([
-    { text: 'Lär dig React', completed: false },
-    { text: 'Skapa en Todo App', completed: false },
-    { text: 'Pusha till GitHub', completed: false },
-  ]);
-
+const TodoList = ({ todos }) => {
   return (
-    <div>
-      <h1>Min Todo App</h1>
-      <TodoList todos={todos} />
-    </div>
+    <ul>
+      {todos.map((todo, index) => (
+        <TodoItem 
+          key={index} 
+          todo={todo} 
+          index={index} 
+        />
+      ))}
+    </ul>
   );
 };
 
-export default App;
+export default TodoList;
