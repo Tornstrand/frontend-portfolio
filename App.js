@@ -4,7 +4,7 @@ import TodoForm from './TodoForm';
 import TodoList from './TodoList';
 
 const App = () => {
-    const [todos, setTodos] = useState([]);
+    const [todos, setTodos] = useState([{ text: 'Lär dig React', completed: false }]);
     const [newTodo, setNewTodo] = useState('');
 
     const handleAddTodo = (e) => {
